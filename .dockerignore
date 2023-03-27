@@ -1,0 +1,9 @@
+.env
+.vscode
+.idea
+.git
+.cache
+*.md
+storage/app/audio/*
+storage/app/video/*
+storage/logs/*
