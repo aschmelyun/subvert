@@ -81,13 +81,13 @@ const onChange = () => {
 const dragover = (e) => {
     e.preventDefault()
     e.stopPropagation()
-    classes.value = 'w-full py-24 border-2 border-dashed mt-12 border-purple-500 bg-gradient-to-br from-indigo-50 to-rose-50'
+    classes.value = 'flex justify-center items-center w-full h-64 border-2 border-dashed mt-12 border-purple-500 bg-gradient-to-br from-indigo-50 to-rose-50'
 }
 
 const dragleave = (e) => {
     e.preventDefault()
     e.stopPropagation()
-    classes.value = 'w-full py-24 border-2 border-dashed mt-12'
+    classes.value = 'flex justify-center items-center w-full h-64 border-2 border-dashed mt-12'
 }
 
 const drop = (e) => {
