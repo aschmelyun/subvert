@@ -42,4 +42,4 @@ Because this project is contained in a single Dockerfile, it can be deployed imm
 
 ## License
 
-The MIT License (MIT). Please see [License File]()
+The MIT License (MIT). Please see [License File](LICENSE.md)
