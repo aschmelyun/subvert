@@ -28,6 +28,8 @@ RUN npm run build
 
 EXPOSE 80
 
+RUN touch database/database.sqlite
+
 RUN php artisan migrate:fresh --force
 
 CMD ["/srv/startup.sh"]
