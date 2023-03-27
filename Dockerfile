@@ -30,6 +30,11 @@ EXPOSE 80
 
 RUN touch database/database.sqlite
 
+RUN mkdir -p storage/app/audio
+RUN mkdir -p storage/app/video
+
+RUN chmod -R 777 storage
+
 RUN php artisan migrate:fresh --force
 
 CMD ["/srv/startup.sh"]
