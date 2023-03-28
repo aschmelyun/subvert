@@ -8,13 +8,18 @@ Generate subtitles, chapters, and summaries of videos in seconds with the help o
 
 ## Getting started
 
-Subvert is self-contained in a single [Docker image](https://hub.docker.com/r/aschmelyun/subvert) and can be started with:
+You'll need:
+
+- [Docker installed](https://docs.docker.com/get-docker/) on your local machine
+- An [OpenAI API key](https://platform.openai.com/account/api-keys)
+
+Subvert is self-contained in a single Docker image and can be started with a one-line command:
 
 ```
 docker run -it -p 80:80 -e OPENAI_API_KEY=sk-123abc aschmelyun/subvert
 ```
 
-This will boot up a server running the application and make it available to your machine at [localhost](http://localhost).
+This will boot up a server running the application and make it available to your machine at http://localhost.
 
 ## How it works
 
