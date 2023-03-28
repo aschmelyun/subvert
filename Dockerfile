@@ -35,6 +35,6 @@ RUN mkdir -p storage/app/video
 
 RUN chmod -R 777 storage
 
-RUN php artisan migrate:fresh --force
+RUN php artisan migrate --force
 
 CMD ["/srv/startup.sh"]
