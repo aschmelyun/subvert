@@ -4,6 +4,8 @@ Generate subtitles, chapters, and summaries of videos in seconds with the help o
 
 🚧 This is very much a work-in-progress, please [create issues](https://github.com/aschmelyun/subvert/issues/new) for bugs if they appear 🚧
 
+![Demo gif of Subvert converting a video](media/subvert-demo.gif)
+
 ## Getting started
 
 Subvert is self-contained in a single [Docker image](https://hub.docker.com/r/aschmelyun/subvert) and can be started with:
