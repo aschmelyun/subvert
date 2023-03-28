@@ -35,8 +35,4 @@ RUN mkdir -p storage/app/video
 
 RUN chmod -R 777 storage
 
-RUN cp .env.example .env
-
-RUN php artisan migrate --force
-
 CMD ["/srv/startup.sh"]
