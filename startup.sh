@@ -5,8 +5,6 @@ if [ -z "$OPENAI_API_KEY" ]; then
     exit 1
 fi
 
-cp .env.example .env
-
 echo "OPENAI_API_KEY=$OPENAI_API_KEY" >> .env
 
 php artisan key:generate
