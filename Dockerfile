@@ -30,6 +30,8 @@ EXPOSE 80
 
 RUN touch database/database.sqlite
 
+RUN cp .env.example .env
+
 RUN mkdir -p storage/app/audio
 RUN mkdir -p storage/app/video
 
