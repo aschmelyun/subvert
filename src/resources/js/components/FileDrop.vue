@@ -3,22 +3,22 @@
         <div v-if="!started" :class="classes" @dragover="dragover" @dragleave="dragleave" @drop="drop">
             <input type="file" name="fileHandler" id="fileHandler" class="w-px h-px opacity-0 overflow-hidden absolute" ref="file" @change="onChange" accept=".mp4, .mov, .m4a" />
             <label v-if="!video" for="fileHandler" class="block cursor-pointer">
-                <p class="text-center text-gray-500 text-lg">Drag + drop a file here or <span class="underline hover:text-gray-800">click to choose</span>.</p>
+                <p class="text-center text-gray-500 text-lg">Glissez + déposez ici ou <span class="underline hover:text-gray-800">cliquez pour choisir</span>.</p>
             </label>
             <div v-else>
-                <p class="text-center text-gray-500 text-lg">You chose <span class="font-bold">{{ video.name }}</span>. Select your options then press start.</p>
-                <button :class="buttonStyles.active">Subtitles</button>
-                <button :class="options.chapters ? buttonStyles.active : buttonStyles.inactive" @click="options.chapters = !options.chapters">Chapters</button>
-                <button :class="options.summary ? buttonStyles.active : buttonStyles.inactive" @click="options.summary = !options.summary">Summary</button>
+                <p class="text-center text-gray-500 text-lg">Vous avez choisis <span class="font-bold">{{ video.name }}</span>. Sélectionnez vos options et appuyez sur GO.</p>
+                <button :class="buttonStyles.active">Sous-Titres</button>
+                <button :class="options.chapters ? buttonStyles.active : buttonStyles.inactive" @click="options.chapters = !options.chapters">Chapitres</button>
+                <button :class="options.summary ? buttonStyles.active : buttonStyles.inactive" @click="options.summary = !options.summary">Résumés</button>
                 <div>
                     <select v-model="options.language" class="mt-4 bg-white border border-gray-300 text-gray-500 font-medium py-2 px-4 rounded mx-2">
-                        <option value="default">Video Language</option>
+                        <option value="default">Langue de la vidéo</option>
                         <option v-for="language in languages" :value="language" :key="language">{{ language }}</option>
                     </select>
                     <select v-if="options.chapters" v-model="options.chapters_amount" class="mt-4 bg-white border border-gray-300 text-gray-500 font-medium py-2 px-4 rounded mx-2">
                         <option :value="n" v-for="n in 20">{{ n }} Chapter{{ n !== 1 ? 's' : '' }}</option>
                     </select>
-                    <button class="mt-4 bg-purple-500 border border-purple-500 text-white font-medium py-1.5 px-4 rounded mx-2" @click="start">Start</button>
+                    <button class="mt-4 bg-purple-500 border border-purple-500 text-white font-medium py-1.5 px-4 rounded mx-2" @click="start">GO !</button>
                 </div>
             </div>
         </div>
@@ -27,7 +27,7 @@
         </div>
         <div v-if="started && step === 98" class="text-center mt-8">
             <a :href="'/process/' + processId" class="inline-block bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-4 rounded">
-                View + Download Items
+                Voir + Télécharger vos fichiers
             </a>
         </div>
     </div>
@@ -49,16 +49,16 @@ const step = ref(1)
 const message = ref('Extracting audio')
 
 const languages = ref([
-    'English',
-    'Spanish',
-    'French',
-    'German',
-    'Italian',
-    'Portuguese',
-    'Russian',
-    'Chinese',
-    'Japanese',
-    'Korean',
+    'Anglais',
+    "espagnol",
+    "français",
+    "allemand",
+    'italien',
+    "portugais",
+    "russe",
+    "chinois",
+    "japonais",
+    "coréen",
 ])
 
 const options = reactive({

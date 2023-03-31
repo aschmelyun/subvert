@@ -14,6 +14,7 @@
     </div>
     @yield('content')
     <footer class="text-center mt-12 mb-8">
-        <p class="text-sm text-gray-500">Thrown together in a weekend by <a href="https://twitter.com/aschmelyun" target="_blank" class="underline hover:text-gray-800 transition-colors duration-200" rel="noopener noreferrer">Andrew Schmelyun</a>@if(env('APP_VERSION')) <span class="text-gray-300">[v{{ env('APP_VERSION') }}]</span>@endif</p>
+        <p class="text-sm text-gray-500">Réalisé en un week-end par <a href="https://twitter.com/aschmelyun" target="_blank" class="underline hover:text-gray-800 transition-colors duration-200" rel="noopener noreferrer">Andrew Schmelyun</a>@if(env('APP_VERSION')) <span class="text-gray-300">[v{{ env('APP_VERSION') }}]</span>@endif</p>
+        <p class="text-sm text-gray-500">Traduit en français par <a href="https://github.com/PinkFloyd1213" target="_blank" class="underline hover:text-gray-800 transition-colors duration-200" rel="noopener noreferrer">PinkFloyd1213<a/></p>
     </footer>
 </body>
