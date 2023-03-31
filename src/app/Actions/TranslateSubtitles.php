@@ -51,7 +51,7 @@ class TranslateSubtitles
                 ],
                 [
                     'role' => 'user',
-                    'content' => $chunk
+                    'content' => implode("\n", $chunk)
                 ]
             ]
         ]);
