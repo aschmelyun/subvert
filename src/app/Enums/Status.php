@@ -16,14 +16,14 @@ enum Status: int
     public function message(): string
     {
         return match ($this) {
-            Status::PENDING => 'Pending processing',
-            Status::EXTRACTING_AUDIO => 'Extracting audio',
-            Status::PROCESSING_SUBTITLES => 'Processing subtitles',
-            Status::TRANSLATING_SUBTITLES => 'Translating subtitles',
-            Status::PROCESSING_CHAPTERS => 'Processing chapters',
-            Status::PROCESSING_SUMMARY => 'Processing summary',
-            Status::COMPLETE => 'All done!',
-            Status::ERRORED => 'There was an error, check the console for more details',
+            Status::PENDING => 'Traitement en cours',
+            Status::EXTRACTING_AUDIO => 'Extraction de l\'audio',
+            Status::PROCESSING_SUBTITLES => 'Traitement des sous-titres',
+            Status::TRANSLATING_SUBTITLES => 'Traduction des sous-titres',
+            Status::PROCESSING_CHAPTERS => 'Traitement des chapitres',
+            Status::PROCESSING_SUMMARY => 'Traitement du résumé',
+            Status::COMPLETE => 'C\'est fini !',
+            Status::ERRORED => 'Il y a eu une erreur, vérifiez la console pour plus de détails.',
         };
     }
 }
