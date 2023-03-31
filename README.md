@@ -1,5 +1,7 @@
 # Subvert
 
+Ceci est une version du projet traduite en Français. Les fonctiont sont les même et tout le mérite revient au créateur original.
+
 Generate subtitles, chapters, and summaries of videos in seconds with the help of OpenAI.
 
 🚧 This is very much a work-in-progress, please [create issues](https://github.com/aschmelyun/subvert/issues/new) for bugs if they appear 🚧
