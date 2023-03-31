@@ -29,6 +29,14 @@ Your video is sent to an API where the audio is extracted from it using FFMpeg, 
 
 If you chose to select chapters or a summary, that transcript is then sent to a **ChatGPT model** for processing into concise chapters of the length you wanted, and a brief summary that would fit in something like a YouTube description.
 
+## Configuration
+
+You can adjust a few parameters in the container by passing in [environment variables](https://docs.docker.com/engine/reference/commandline/run/#env) with your command using additional `-e` flags. Here are the current ones you can add:
+
+- `OPENAI_API_KEY` **(required)** - Sets the key responsible for communication with OpenAI's APIs. No default.
+- `UPLOAD_MAX_FILESIZE` - Changes PHP's UPLOAD_MAX_FILESIZE setting. Default: `256M`
+- `MEMORY_LIMIT` - Changes PHP's MEMORY_LIMIT setting. Default: `512M`
+
 ## Starting from source
 
 Alternative, if you have **PHP 8.1+** and **npm** installed on your local machine, you can boot the application up directly from the source code instead.
