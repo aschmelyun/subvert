@@ -1,5 +1,8 @@
 # Subvert
 
+![Docker Semver](https://img.shields.io/docker/v/aschmelyun/subvert?style=flat-square)
+![Docker Pulls](https://img.shields.io/docker/pulls/aschmelyun/subvert?label=pulls&style=flat-square)
+
 Generate subtitles, chapters, and summaries of videos in seconds with the help of OpenAI.
 
 🚧 This is very much a work-in-progress, please [create issues](https://github.com/aschmelyun/subvert/issues/new) for bugs if they appear 🚧
