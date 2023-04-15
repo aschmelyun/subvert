@@ -12,7 +12,7 @@
             <Dot :status="determineStatus(5)" />
         </div>
         <h3 class="text-lg text-gray-500">
-            <span v-if="step !== 98">Step {{ props.step }}: </span>{{ props.message }}
+            <span v-if="step !== 98 && step !== 99">Step {{ props.step }}: </span>{{ props.message }}
         </h3>
     </div>
 </template>

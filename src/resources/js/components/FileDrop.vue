@@ -127,6 +127,7 @@ const poll = () => {
 
             if (response.data.status === 99) {
                 console.log(response)
+                message.value = response.data.error
                 clearInterval(intervalId.value)
             }
 
