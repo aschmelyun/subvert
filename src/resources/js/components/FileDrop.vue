@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-if="!started" :class="classes" @dragover="dragover" @dragleave="dragleave" @drop="drop">
-            <input type="file" name="fileHandler" id="fileHandler" class="w-px h-px opacity-0 overflow-hidden absolute" ref="file" @change="onChange" accept=".mp4, .mov, .m4a" />
+            <input type="file" name="fileHandler" id="fileHandler" class="w-px h-px opacity-0 overflow-hidden absolute" ref="file" @change="onChange" accept="video/*, audio/*" />
             <label v-if="!video" for="fileHandler" class="block cursor-pointer">
                 <p class="text-center text-gray-500 text-lg">Drag + drop a file here or <span class="underline hover:text-gray-800">click to choose</span>.</p>
             </label>
