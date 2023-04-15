@@ -17,6 +17,7 @@ services:
       UPSTREAM: subvert:8080
       SERVERNAME: test.example.com # change this to your domain
       EXTRANAMES: www.test.example.com # remove this line if you don't have any additional names
+      NGINX_CLIENT_MAX_BODY_SIZE: 256M # change this to match subvert's UPLOAD_MAX_FILESIZE
     ports:
       - "80:80"
       - "443:443"
