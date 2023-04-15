@@ -19,7 +19,7 @@ You'll need:
 Subvert is self-contained in a single Docker image and can be started with a one-line command:
 
 ```
-docker run -it -p 80:80 -e OPENAI_API_KEY=sk-123abc aschmelyun/subvert
+docker run -it -p 80:8080 -e OPENAI_API_KEY=sk-123abc aschmelyun/subvert
 ```
 
 This will boot up a server running the application and make it available to your machine at http://localhost.
