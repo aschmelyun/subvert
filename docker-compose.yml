@@ -14,7 +14,7 @@ services:
     depends_on:
       - subvert
     environment:
-      UPSTREAM: 0.0.0.0:8080
+      UPSTREAM: subvert:8080
       SERVERNAME: test.example.com # change this to your domain
       EXTRANAMES: www.test.example.com # remove this line if you don't have any additional names
     ports:
