@@ -25,4 +25,4 @@ php artisan migrate:fresh --force
 
 php artisan queue:work &
 
-php artisan serve --port=80 --host=0.0.0.0
+php artisan serve --port=8080 --host=0.0.0.0
