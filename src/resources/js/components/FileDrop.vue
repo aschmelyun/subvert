@@ -74,7 +74,21 @@ const buttonStyles = reactive({
     'active': 'mt-4 bg-purple-500 border border-purple-500 text-white font-medium py-1.5 px-4 rounded mx-2'
 })
 
+const checkFilesize = (size) => {
+    let sizes = ['B', 'K', 'M', 'G']
+    let maxSize = parseInt(window.maxFilesize.substring(0, window.maxFilesize.length - 1))
+
+    maxSize = maxSize * Math.pow(1024, sizes.indexOf(window.maxFilesize.slice(-1)))
+
+    return size < maxSize
+}
+
 const onChange = () => {
+    if (!checkFilesize(file.value.files[0].size)) {
+        alert(`The file you selected is too large. Please select a file smaller than ${window.maxFilesize}.`)
+        return
+    }
+
     video.value = file.value.files[0]
 }
 
@@ -94,6 +108,12 @@ const drop = (e) => {
     e.preventDefault()
     e.stopPropagation()
     classes.value = 'w-full py-24 border-2 border-dashed mt-12'
+
+    if (!checkFilesize(e.dataTransfer.files[0].size)) {
+        alert(`The file you selected is too large. Please select a file smaller than ${window.maxFilesize}.`)
+        return
+    }
+
     video.value = e.dataTransfer.files[0]
 }
 
