@@ -12,7 +12,7 @@
                 <button :class="options.summary ? buttonStyles.active : buttonStyles.inactive" @click="options.summary = !options.summary">Summary</button>
                 <div>
                     <select v-model="options.language" class="mt-4 bg-white border border-gray-300 text-gray-500 font-medium py-2 px-4 rounded mx-2">
-                        <option value="default">Video Language</option>
+                        <option value="default">Translate Subtitles to</option>
                         <option v-for="language in languages" :value="language" :key="language">{{ language }}</option>
                     </select>
                     <select v-if="options.chapters" v-model="options.chapters_amount" class="mt-4 bg-white border border-gray-300 text-gray-500 font-medium py-2 px-4 rounded mx-2">
