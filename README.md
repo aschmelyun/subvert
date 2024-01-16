@@ -1,65 +1,95 @@
 # Subvert
 
-Ceci est une version du projet traduite en Français. Les fonctions sont les même et tout le mérite revient au créateur original.
+Ceci est une version du projet traduite en français. Les fonctions sont les mêmes et tout le mérite revient au créateur original.
 
 ![Docker Semver](https://img.shields.io/docker/v/aschmelyun/subvert?style=flat-square)
 ![Docker Pulls](https://img.shields.io/docker/pulls/aschmelyun/subvert?label=pulls&style=flat-square)
 
-Generate subtitles, chapters, and summaries of videos in seconds with the help of OpenAI.
+Générez des sous-titres, des chapitres et des résumés de vidéos en quelques secondes avec l'aide d'OpenAI.
 
-🚧 This is very much a work-in-progress, please [create issues](https://github.com/aschmelyun/subvert/issues/new) for bugs if they appear 🚧
+🚧 Ceci est encore largement en cours de développement, veuillez [créer des problèmes](https://github.com/aschmelyun/subvert/issues/new) pour les bugs s'ils apparaissent 🚧
 
-![Demo gif of Subvert converting a video](media/subvert-demo.gif)
+![Démo gif de Subvert convertissant une vidéo](media/subvert-demo.gif)
 
-## Getting started
+## Pour commencer
 
-You'll need:
+Vous aurez besoin de :
 
-- [Docker installed](https://docs.docker.com/get-docker/) on your local machine
-- An [OpenAI API key](https://platform.openai.com/account/api-keys)
+- [Docker installé](https://docs.docker.com/get-docker/) sur votre machine locale
+- Une [clé API OpenAI](https://platform.openai.com/account/api-keys)
 
-Subvert is self-contained in a single Docker image and can be started with a one-line command:
+Subvert est autonome dans une seule image Docker et peut être démarré avec une seule commande :
 
 ```
 docker run -it -p 80:8080 -e OPENAI_API_KEY=sk-123abc aschmelyun/subvert
 ```
 
-This will boot up a server running the application and make it available to your machine at http://localhost.
+Cela démarrera un serveur exécutant l'application et la rendra disponible sur votre machine à l'adresse http://localhost.
 
-## How it works
+## Comment ça fonctionne
 
-After selecting a video file to process, you have the option of choosing whether you also want to generate chapters and a summary.
+Après avoir sélectionné un fichier vidéo à traiter, vous avez la possibilité de choisir si vous souhaitez également générer des chapitres et un résumé.
 
-Your video is sent to an API where the audio is extracted from it using FFMpeg, and then sent to **OpenAI's Whisper model** for transcription into the common vtt format.
+Votre vidéo est envoyée à une API où l'audio en est extrait à l'aide de FFMpeg, puis envoyée au modèle **Whisper d'OpenAI** pour une transcription au format vtt courant.
 
-If you chose to select chapters or a summary, that transcript is then sent to a **ChatGPT model** for processing into concise chapters of the length you wanted, and a brief summary that would fit in something like a YouTube description.
+Si vous avez choisi de sélectionner des chapitres ou un résumé, cette transcription est ensuite envoyée à un modèle **ChatGPT** pour être transformée en chapitres concis de la longueur souhaitée et en un bref résumé qui pourrait s'insérer dans quelque chose comme une description YouTube.
 
 ## Configuration
 
-You can adjust a few parameters in the container by passing in [environment variables](https://docs.docker.com/engine/reference/commandline/run/#env) with your command using additional `-e` flags. Here are the current ones you can add:
+Vous pouvez ajuster quelques paramètres dans le conteneur en passant des [variables d'environnement](https://docs.docker.com/engine/reference/commandline/run/#env) avec votre commande en utilisant des drapeaux supplémentaires `-e`. Voici les actuels que vous pouvez ajouter :
 
-- `OPENAI_API_KEY` **(required)** - Sets the key responsible for communication with OpenAI's APIs. No default.
-- `UPLOAD_MAX_FILESIZE` - Changes PHP's UPLOAD_MAX_FILESIZE setting. Default: `256M`
-- `MEMORY_LIMIT` - Changes PHP's MEMORY_LIMIT setting. Default: `512M`
+- `OPENAI_API_KEY` **(obligatoire)** - Définit la clé responsable de la communication avec les API d'OpenAI. Aucune valeur par défaut.
+- `UPLOAD_MAX_FILESIZE` - Modifie le paramètre UPLOAD_MAX_FILESIZE de PHP. Par défaut : `256M`
+- `MEMORY_LIMIT` - Modifie le paramètre MEMORY_LIMIT de PHP. Par défaut : `512M`
 
-## Starting from source
+## Démarrage à partir de la source
 
-Alternative, if you have **PHP 8.1+** and **npm** installed on your local machine, you can boot the application up directly from the source code instead.
+Alternativement, si vous avez **PHP 8.1+** et **npm** installés sur votre machine locale, vous pouvez démarrer l'application directement à partir du code source.
 
-First, check out this repo to your desired location. Then, navigate to the `src` directory and run:
+Tout d'abord, clonez ce dépôt à l'emplacement souhaité. Ensuite, accédez au répertoire `src` et exécutez :
+
+```
+docker run -it -p 80:8080 -e OPENAI_API_KEY=sk-123abc aschmelyun/subvert
+```
+
+
+Cela démarrera un serveur exécutant l'application et la rendra disponible sur votre machine à l'adresse http://localhost.
+
+## Comment ça fonctionne
+
+Après avoir sélectionné un fichier vidéo à traiter, vous avez la possibilité de choisir si vous souhaitez également générer des chapitres et un résumé.
+
+Votre vidéo est envoyée à une API où l'audio en est extrait à l'aide de FFMpeg, puis envoyée au modèle **Whisper d'OpenAI** pour une transcription au format vtt courant.
+
+Si vous avez choisi de sélectionner des chapitres ou un résumé, cette transcription est ensuite envoyée à un modèle **ChatGPT** pour être transformée en chapitres concis de la longueur souhaitée et en un bref résumé qui pourrait s'insérer dans quelque chose comme une description YouTube.
+
+## Configuration
+
+Vous pouvez ajuster quelques paramètres dans le conteneur en passant des [variables d'environnement](https://docs.docker.com/engine/reference/commandline/run/#env) avec votre commande en utilisant des drapeaux supplémentaires `-e`. Voici les actuels que vous pouvez ajouter :
+
+- `OPENAI_API_KEY` **(obligatoire)** - Définit la clé responsable de la communication avec les API d'OpenAI. Aucune valeur par défaut.
+- `UPLOAD_MAX_FILESIZE` - Modifie le paramètre UPLOAD_MAX_FILESIZE de PHP. Par défaut : `256M`
+- `MEMORY_LIMIT` - Modifie le paramètre MEMORY_LIMIT de PHP. Par défaut : `512M`
+
+## Démarrage à partir de la source
+
+Alternativement, si vous avez **PHP 8.1+** et **npm** installés sur votre machine locale, vous pouvez démarrer l'application directement à partir du code source.
+
+Tout d'abord, clonez ce dépôt à l'emplacement souhaité. Ensuite, accédez au répertoire `src` et exécutez :
 
 ```
 ./startup.sh
 ```
 
-Alternatively, you can run the commands inside of the `startup.sh` script individually for the same result.
 
-## Deploying
+Alternativement, vous pouvez exécuter les commandes à l'intérieur du script `startup.sh` individuellement pour obtenir le même résultat.
 
-Because this project is contained in a single Dockerfile, it can be deployed immediately to any server provisioned with Docker. Alternatively, the Subvert Docker image can be ran on cloud instances via AWS, Azure, GCP, Fly.io, etc.
+## Déploiement
 
-> Note: This image currently only exposes the insecure :80 http port.
+Étant donné que ce projet est contenu dans un seul fichier Docker, il peut être déployé immédiatement sur n'importe quel serveur provisionné avec Docker. Alternativement, l'image Docker de Subvert peut être exécutée sur des instances cloud via AWS, Azure, GCP, Fly.io, etc.
 
-## License
+> Remarque : Cette image expose actuellement uniquement le port http :80 non sécurisé.
 
-The MIT License (MIT). Please see [License File](LICENSE.md)
+## Licence
+
+La Licence MIT (MIT). Veuillez consulter le [fichier de licence](LICENSE.md)
