@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  subvert: 
+    image: aschmelyun/subvert:latest
+    restart: always
+    environment:
+      - OPENAI_API_KEY=sk-<your key here>
+      - UPLOAD_MAX_FILESIZE=256M
+      - MEMORY_LIMIT=512M
+  proxy:
+    image: danieldent/nginx-ssl-proxy
+    restart: always
+    depends_on:
+      - subvert
+    environment:
+      UPSTREAM: subvert:8080
+      SERVERNAME: test.example.com # change this to your domain
+      EXTRANAMES: www.test.example.com # remove this line if you don't have any additional names
+      NGINX_CLIENT_MAX_BODY_SIZE: 256M # change this to match subvert's UPLOAD_MAX_FILESIZE
+    ports:
+      - "80:80"
+      - "443:443"
