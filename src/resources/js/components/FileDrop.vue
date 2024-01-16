@@ -50,15 +50,15 @@ const message = ref('Extraction de l\'audio')
 
 const languages = ref([
     'Anglais',
-    "espagnol",
-    "français",
-    "allemand",
-    'italien',
-    "portugais",
-    "russe",
-    "chinois",
-    "japonais",
-    "coréen",
+    "Espagnol",
+    "Français",
+    "Allemand",
+    'Italien',
+    "Portugais",
+    "Russe",
+    "Chinois",
+    "Japonais",
+    "Coréen",
 ])
 
 const options = reactive({
