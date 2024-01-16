@@ -49,38 +49,8 @@ Alternativement, si vous avez **PHP 8.1+** et **npm** installés sur votre machi
 Tout d'abord, clonez ce dépôt à l'emplacement souhaité. Ensuite, accédez au répertoire `src` et exécutez :
 
 ```
-docker run -it -p 80:8080 -e OPENAI_API_KEY=sk-123abc aschmelyun/subvert
-```
-
-
-Cela démarrera un serveur exécutant l'application et la rendra disponible sur votre machine à l'adresse http://localhost.
-
-## Comment ça fonctionne
-
-Après avoir sélectionné un fichier vidéo à traiter, vous avez la possibilité de choisir si vous souhaitez également générer des chapitres et un résumé.
-
-Votre vidéo est envoyée à une API où l'audio en est extrait à l'aide de FFMpeg, puis envoyée au modèle **Whisper d'OpenAI** pour une transcription au format vtt courant.
-
-Si vous avez choisi de sélectionner des chapitres ou un résumé, cette transcription est ensuite envoyée à un modèle **ChatGPT** pour être transformée en chapitres concis de la longueur souhaitée et en un bref résumé qui pourrait s'insérer dans quelque chose comme une description YouTube.
-
-## Configuration
-
-Vous pouvez ajuster quelques paramètres dans le conteneur en passant des [variables d'environnement](https://docs.docker.com/engine/reference/commandline/run/#env) avec votre commande en utilisant des drapeaux supplémentaires `-e`. Voici les actuels que vous pouvez ajouter :
-
-- `OPENAI_API_KEY` **(obligatoire)** - Définit la clé responsable de la communication avec les API d'OpenAI. Aucune valeur par défaut.
-- `UPLOAD_MAX_FILESIZE` - Modifie le paramètre UPLOAD_MAX_FILESIZE de PHP. Par défaut : `256M`
-- `MEMORY_LIMIT` - Modifie le paramètre MEMORY_LIMIT de PHP. Par défaut : `512M`
-
-## Démarrage à partir de la source
-
-Alternativement, si vous avez **PHP 8.1+** et **npm** installés sur votre machine locale, vous pouvez démarrer l'application directement à partir du code source.
-
-Tout d'abord, clonez ce dépôt à l'emplacement souhaité. Ensuite, accédez au répertoire `src` et exécutez :
-
-```
 ./startup.sh
 ```
-
 
 Alternativement, vous pouvez exécuter les commandes à l'intérieur du script `startup.sh` individuellement pour obtenir le même résultat.
 
