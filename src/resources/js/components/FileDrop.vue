@@ -46,7 +46,7 @@ const processId = ref(null)
 const intervalId = ref(null)
 
 const step = ref(1)
-const message = ref('Extracting audio')
+const message = ref('Extraction de l\'audio')
 
 const languages = ref([
     'Anglais',
