@@ -23,7 +23,7 @@
             </div>
         </div>
         <div v-else>
-            <Stepper :step="step" :message="message" />
+            <Stepper :step="Étape" :message="message" />
         </div>
         <div v-if="started && step === 98" class="text-center mt-8">
             <a :href="'/process/' + processId" class="inline-block bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-4 rounded">
