@@ -16,7 +16,7 @@
                         <option v-for="language in languages" :value="language" :key="language">{{ language }}</option>
                     </select>
                     <select v-if="options.chapters" v-model="options.chapters_amount" class="mt-4 bg-white border border-gray-300 text-gray-500 font-medium py-2 px-4 rounded mx-2">
-                        <option :value="n" v-for="n in 20">{{ n }} Chapter{{ n !== 1 ? 's' : '' }}</option>
+                        <option :value="n" v-for="n in 20">{{ n }} Chapitre{{ n !== 1 ? 's' : '' }}</option>
                     </select>
                     <button class="mt-4 bg-purple-500 border border-purple-500 text-white font-medium py-1.5 px-4 rounded mx-2" @click="start">GO !</button>
                 </div>
