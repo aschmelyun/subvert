@@ -17,10 +17,10 @@
     </div>
     @yield('content')
     <footer class="text-center mt-12 mb-8">
-        <p class="text-sm text-gray-500">Thrown together in a weekend by <a href="https://twitter.com/aschmelyun" target="_blank" class="underline hover:text-gray-800 transition-colors duration-200" rel="noopener noreferrer">Andrew Schmelyun</a></p>
+        <p class="text-sm text-gray-500">Crée en un weekend par <a href="https://twitter.com/aschmelyun" target="_blank" class="underline hover:text-gray-800 transition-colors duration-200" rel="noopener noreferrer">Andrew Schmelyun</a></p>
         <p class="text-sm text-gray-500">Traduit en français par <a href="https://github.com/PinkFloyd1213" target="_blank" class="underline hover:text-gray-800 transition-colors duration-200" rel="noopener noreferrer">PinkFloyd1213<a/></p>
         @if(env('APP_VERSION'))
-            <p class="text-sm text-gray-300 mt-1">[Max Filesize: {{ ini_get('upload_max_filesize') }}] [v{{ env('APP_VERSION') }}]</p>
+            <p class="text-sm text-gray-300 mt-1">[Taille de fichier max: {{ ini_get('upload_max_filesize') }}] [v{{ env('APP_VERSION') }}]</p>
         @endif
     </footer>
 </body>
