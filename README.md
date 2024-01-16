@@ -1,6 +1,6 @@
 # Subvert
 
-Ceci est une version du projet traduite en Français. Les fonctiont sont les même et tout le mérite revient au créateur original.
+Ceci est une version du projet traduite en Français. Les fonctions sont les même et tout le mérite revient au créateur original.
 
 ![Docker Semver](https://img.shields.io/docker/v/aschmelyun/subvert?style=flat-square)
 ![Docker Pulls](https://img.shields.io/docker/pulls/aschmelyun/subvert?label=pulls&style=flat-square)
