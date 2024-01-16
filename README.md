@@ -1,6 +1,6 @@
 # Subvert
 
-Ceci est une version du projet traduite en français. Les fonctions sont les mêmes et tout le mérite revient au créateur original.
+Ceci est une version du projet traduite en français. Les fonctions sont les mêmes et tout le mérite revient au créateur original. L'image docker est aussi traduite en Français. Vous la trouverez [ici](https://hub.docker.com/repository/docker/pinkfloyd1213/subvert_fr/general). 
 
 ![Docker Semver](https://img.shields.io/docker/v/aschmelyun/subvert?style=flat-square)
 ![Docker Pulls](https://img.shields.io/docker/pulls/aschmelyun/subvert?label=pulls&style=flat-square)
@@ -21,7 +21,7 @@ Vous aurez besoin de :
 Subvert est autonome dans une seule image Docker et peut être démarré avec une seule commande :
 
 ```
-docker run -it -p 80:8080 -e OPENAI_API_KEY=sk-123abc aschmelyun/subvert
+docker run -it -p 80:8080 -e OPENAI_API_KEY=sk-123abc pinkfloyd1213/subvert_fr
 ```
 
 Cela démarrera un serveur exécutant l'application et la rendra disponible sur votre machine à l'adresse http://localhost.
