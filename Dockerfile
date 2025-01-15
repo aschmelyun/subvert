@@ -1,4 +1,4 @@
-FROM php:8.2-alpine
+FROM php:8.4-alpine
 
 RUN touch /usr/local/etc/php/php.ini
 

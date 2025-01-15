@@ -1,10 +1,4 @@
 #!/bin/sh
-
-if [ -z "$OPENAI_API_KEY" ]; then
-    echo "OPENAI_API_KEY is not set"
-    exit 1
-fi
-
 if [ -z "$UPLOAD_MAX_FILESIZE" ]; then
     UPLOAD_MAX_FILESIZE="256M"
 fi
