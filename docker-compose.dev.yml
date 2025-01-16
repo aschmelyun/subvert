@@ -12,6 +12,9 @@ services:
     environment:
       - APP_ENV=local
       - APP_DEBUG=true
+      - UPLOAD_MAX_FILESIZE=0
+      - POST_MAX_SIZE=0
+      - MEMORY_LIMIT=2G
     networks:
       - subvert
 

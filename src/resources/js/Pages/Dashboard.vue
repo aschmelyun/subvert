@@ -1,5 +1,24 @@
 <script setup>
-import { Head } from '@inertiajs/vue3';
+import { Head, useForm } from '@inertiajs/vue3';
+import { ref } from 'vue';
+
+defineProps({
+    media: {
+        type: Array,
+        required: true,
+    },
+    errors: {
+        type: Object,
+        required: false,
+    },
+});
+
+const addMediaType = ref(null);
+
+const form = useForm({
+    link: null,
+    file: null,
+});
 </script>
 
 <template>
@@ -95,53 +114,7 @@ import { Head } from '@inertiajs/vue3';
     </header>
     <div class="mx-auto max-w-7xl px-8">
         <main class="w-full py-8">
-            <div
-                class="flex flex-col items-center rounded-lg border-2 border-dashed border-slate-200 p-16 text-center"
-            >
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    class="h-12 w-12 text-slate-400"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                >
-                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                    <polyline points="17 8 12 3 7 8" />
-                    <line x1="12" x2="12" y1="3" y2="15" />
-                </svg>
-
-                <h3 class="mt-2 text-sm font-medium text-gray-900">
-                    No media yet
-                </h3>
-                <p class="mb-4 mt-1 text-sm text-gray-500">
-                    Get started by uploading or linking your first video or
-                    audio recording!
-                </p>
-                <button
-                    type="button"
-                    class="inline-flex items-center gap-x-1 rounded-lg border border-violet-700 bg-violet-600 px-3 py-1.5 text-sm font-medium text-white shadow-sm hover:bg-violet-700 focus:bg-violet-700 focus:outline-none disabled:pointer-events-none disabled:opacity-50 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        class="h-4 w-4"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                    >
-                        <line x1="12" x2="12" y1="5" y2="19" />
-                        <line x1="5" x2="19" y1="12" y2="12" />
-                    </svg>
-
-                    Add Media
-                </button>
-            </div>
-            <div class="grid grid-cols-3 gap-4 py-8">
+            <div v-if="media.length" class="grid grid-cols-3 gap-4 py-8">
                 <div
                     class="group cursor-pointer overflow-hidden rounded-lg bg-white transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
                 >
@@ -213,6 +186,139 @@ import { Head } from '@inertiajs/vue3';
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div
+                v-else
+                class="flex flex-col items-center rounded-lg border-2 border-dashed border-slate-200 p-16 text-center"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    class="h-12 w-12 text-slate-400"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                >
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="17 8 12 3 7 8" />
+                    <line x1="12" x2="12" y1="3" y2="15" />
+                </svg>
+
+                <h3 class="mt-2 text-sm font-medium text-gray-900">
+                    No media yet
+                </h3>
+                <p class="mb-4 mt-1 text-sm text-gray-500">
+                    Get started by uploading or linking your first video or
+                    audio recording!
+                </p>
+
+                <div
+                    v-if="!addMediaType"
+                    class="flex items-center justify-center gap-4"
+                >
+                    <button
+                        @click="addMediaType = 'file'"
+                        type="button"
+                        class="inline-flex items-center gap-x-1 rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm font-medium text-gray-800 shadow-sm hover:bg-gray-50 focus:bg-gray-50 focus:outline-none disabled:pointer-events-none disabled:opacity-50 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            class="h-4 w-4"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                        >
+                            <line x1="12" x2="12" y1="5" y2="19" />
+                            <line x1="5" x2="19" y1="12" y2="12" />
+                        </svg>
+
+                        Upload File
+                    </button>
+                    <button
+                        @click.prevent="addMediaType = 'link'"
+                        type="button"
+                        class="inline-flex items-center gap-x-1 rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm font-medium text-gray-800 shadow-sm hover:bg-gray-50 focus:bg-gray-50 focus:outline-none disabled:pointer-events-none disabled:opacity-50 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            class="h-4 w-4"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                        >
+                            <path
+                                d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"
+                            />
+                            <path
+                                d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"
+                            />
+                        </svg>
+
+                        Paste Link
+                    </button>
+                </div>
+                <form
+                    v-if="addMediaType"
+                    @submit.prevent="form.post('/process')"
+                    enctype="multipart/form-data"
+                    class="flex items-center justify-center gap-4"
+                >
+                    <input
+                        v-if="addMediaType === 'link'"
+                        v-model="form.link"
+                        type="text"
+                        id="link"
+                        name="link"
+                        placeholder="youtube.com/watch?v=dQw4w9WgXcQ"
+                        class="inline-flex w-64 items-center gap-x-1 rounded-lg border border-gray-200 bg-white px-3 py-1.5 text-sm font-medium text-gray-800 focus:border-violet-700 focus:shadow-sm focus:outline-none"
+                    />
+                    <input
+                        v-if="addMediaType === 'file'"
+                        @input="form.file = $event.target.files[0]"
+                        type="file"
+                        id="file"
+                        name="file"
+                        accept="video/*, audio/*"
+                        class="inline-flex w-64 items-center gap-x-1 px-3 py-1 text-sm font-medium text-gray-800 focus:outline-none"
+                    />
+                    <button
+                        type="submit"
+                        class="inline-flex items-center gap-x-1 rounded-lg border border-violet-700 bg-violet-600 px-3 py-1.5 text-sm font-medium text-white shadow-sm hover:bg-violet-700 focus:bg-violet-700 focus:outline-none disabled:pointer-events-none disabled:opacity-50 dark:border-neutral-700 dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            class="h-4 w-4"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                        >
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                            <polyline points="22 4 12 14.01 9 11.01" />
+                        </svg>
+
+                        Start Processing
+                    </button>
+                </form>
+                <div class="mt-2 text-sm text-rose-700" v-if="errors">
+                    <p v-for="error in Object.keys(errors)" :key="error">
+                        {{
+                            typeof errors[error] === 'object'
+                                ? errors[error][0]
+                                : errors[error]
+                        }}
+                    </p>
                 </div>
             </div>
         </main>
