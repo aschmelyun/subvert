@@ -9,6 +9,7 @@
     "devDependencies": {
         "@inertiajs/vue3": "^2.0.1",
         "@rushstack/eslint-patch": "^1.8.0",
+        "@tailwindcss/forms": "^0.5.10",
         "@vitejs/plugin-vue": "^5.2.1",
         "@vue/eslint-config-prettier": "^9.0.0",
         "autoprefixer": "^10.4.20",

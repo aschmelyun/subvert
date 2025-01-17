@@ -51,7 +51,9 @@ Route::post('/process', function (Request $request) {
 });
 
 Route::get('/media/{media}', function (Media $media) {
-    return $media;
+    return Inertia::render('Media', [
+        'media' => $media,
+    ]);
 })->name('media.show');
 
 Route::get('/phpinfo', function () {
