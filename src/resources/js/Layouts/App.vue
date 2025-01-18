@@ -1,3 +1,8 @@
+<script setup lang="ts">
+import { Link } from '@inertiajs/vue3';
+import { route } from 'ziggy-js';
+</script>
+
 <template>
     <header class="w-full border-b border-slate-200 bg-white pb-1">
         <div
@@ -48,19 +53,27 @@
                 <div
                     class="mt-5 flex flex-row items-center gap-6 text-sm sm:mt-0 sm:justify-end sm:ps-5"
                 >
-                    <a
-                        class="font-medium text-violet-600 focus:outline-none"
-                        href="#"
+                    <Link
+                        class="font-medium text-slate-600 hover:text-slate-900 focus:outline-none"
+                        :class="{
+                            'text-violet-600 hover:text-violet-600':
+                                route().current('dashboard'),
+                        }"
+                        :href="route('dashboard')"
                         aria-current="page"
-                        >Media</a
+                        >Media</Link
+                    >
+                    <Link
+                        class="font-medium text-slate-600 hover:text-slate-900 focus:outline-none"
+                        :class="{
+                            'text-violet-600 hover:text-violet-600':
+                                route().current('workflows.*'),
+                        }"
+                        :href="route('workflows.index')"
+                        >Workflows</Link
                     >
                     <a
-                        class="font-medium text-slate-600 hover:text-slate-900 focus:text-gray-400 focus:outline-none dark:text-neutral-400 dark:hover:text-neutral-500 dark:focus:text-neutral-500"
-                        href="#"
-                        >Workflows</a
-                    >
-                    <a
-                        class="font-medium text-slate-600 hover:text-slate-900 focus:text-gray-400 focus:outline-none dark:text-neutral-400 dark:hover:text-neutral-500 dark:focus:text-neutral-500"
+                        class="font-medium text-slate-600 hover:text-slate-900 focus:outline-none"
                         href="#"
                         >Settings</a
                     >
