@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('workflow_id')->constrained()->onDelete('cascade');
             $table->string('name');
-            $table->text('description')->nullable();
-            $table->string('type');
+            $table->longText('prompt')->nullable();
             $table->json('config');
             $table->integer('order');
             $table->boolean('is_active')->default(true);

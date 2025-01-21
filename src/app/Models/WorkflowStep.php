@@ -9,6 +9,13 @@ class WorkflowStep extends Model
 {
     protected $guarded = [];
 
+    protected function casts(): array
+    {
+        return [
+            'config' => 'array',
+        ];
+    }
+
     public function workflow(): BelongsTo
     {
         return $this->belongsTo(Workflow::class);
