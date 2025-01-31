@@ -1,6 +1,6 @@
 <script setup>
 import App from '@/Layouts/App.vue';
-import { Head, useForm } from '@inertiajs/vue3';
+import { Head, Link, useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
 
 defineProps({
@@ -25,9 +25,10 @@ const form = useForm({
     <Head title="Workflows" />
     <App>
         <div v-if="workflows.length" class="grid grid-cols-3 gap-4 py-8">
-            <div
+            <Link
                 v-for="item in workflows"
                 :key="item.id"
+                :href="route('workflows.show', item.id)"
                 class="group block cursor-pointer overflow-hidden rounded-lg border border-slate-200 bg-white px-6 py-4 transition-all duration-300 hover:scale-[1.02] hover:border-violet-600 hover:shadow-lg"
             >
                 <div class="flex items-center gap-2">
@@ -41,7 +42,7 @@ const form = useForm({
                 <small class="mt-4 block text-xs text-slate-600"
                     >Last used 5 mins ago</small
                 >
-            </div>
+            </Link>
             <div
                 class="flex items-center justify-center overflow-hidden rounded-lg border border-dashed border-slate-200 px-6 py-4 text-center"
             >

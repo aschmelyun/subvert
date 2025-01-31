@@ -16,16 +16,6 @@ const props = defineProps({
 
 const title = ref(props.media.title);
 const description = ref(props.media.description);
-
-const updateMedia = () => {
-    // Implement the update logic here
-    // This could be an API call to update the media information
-};
-
-const runWorkflow = (workflowId) => {
-    // Implement the logic to run a workflow
-    // This could be an API call to start the selected workflow
-};
 </script>
 
 <template>

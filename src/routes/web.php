@@ -78,6 +78,8 @@ Route::post('/workflows/create', function (Request $request) {
 })->name('workflows.store');
 
 Route::get('/workflows/{workflow}', function (Workflow $workflow) {
+    $workflow->load(['steps']);
+
     return Inertia::render('Workflow', [
         'workflow' => $workflow
     ]);
