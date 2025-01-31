@@ -214,7 +214,7 @@ const form = useForm({
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
-                        class="h-4 w-4"
+                        class="mr-1 h-4 w-4 text-violet-300"
                         fill="none"
                         stroke="currentColor"
                         stroke-linecap="round"
