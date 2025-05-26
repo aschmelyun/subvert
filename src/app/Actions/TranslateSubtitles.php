@@ -4,9 +4,10 @@ namespace App\Actions;
 
 use App\Enums\Status;
 use App\Models\Process;
-use OpenAI\Laravel\Facades\OpenAI;
+use App\Services\AiService;
 
 class TranslateSubtitles
+    public function __construct(protected AiService $ai) {}
 {
     public function handle(Process $process, \Closure $next)
     {
@@ -36,11 +37,23 @@ class TranslateSubtitles
 
             return;
         }
-
-        return $next($process);
-    }
-
     private function translateChunk($chunk, $language)
+    {
+        $response = $this->ai->chat([
+            'model' => 'gpt-3.5-turbo',
+            'messages' => [
+                ['role' => 'system', 'content' => "Translate the vtt subtitles provided to {$language}. Provide back the translated vtt file, including the original timestamps."],
+                ['role' => 'user', 'content' => implode("\n", $chunk)],
+            ],
+        ]);
+
+        $completedTranslation = '';
+        foreach (($response->choices ?? $response['choices']) as $choice) {
+            $completedTranslation .= $choice->message->content ?? $choice['message']['content'];
+        }
+
+        return $completedTranslation;
+    }
     {
         $summary = OpenAI::chat()->create([
             'model' => 'gpt-3.5-turbo',

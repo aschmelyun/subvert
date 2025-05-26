@@ -4,9 +4,10 @@ namespace App\Actions;
 
 use App\Enums\Status;
 use App\Models\Process;
-use OpenAI\Laravel\Facades\OpenAI;
+use App\Services\AiService;
 
 class GenerateChapters
+    public function __construct(protected AiService $ai) {}
 {
     public function handle(Process $process, \Closure $next)
     {
@@ -24,12 +25,35 @@ class GenerateChapters
         try {
             $completedChapterChunks = [];
 
-            foreach($process->transcriptChunks as $chunk) {
-                $completedChapterChunks[] = $this->getChapters($chunk, $chaptersAmount);
-            }
+    private function getChapters($subtitles, $chaptersAmount)
+    {
+        $response = $this->ai->chat([
+            'model' => 'gpt-3.5-turbo',
+            'temperature' => 0.2,
+            'messages' => [
+                ['role' => 'system', 'content' => "You are a video editor. You will be given subtitles of a video. You need to summarize the video as a list of {$chaptersAmount} concise chapters, no more than a short sentence each. Each chapter should be prefixed with a single timestamp relevant to the starting position in the video. Provide back only the list of chapters, nothing before and nothing after."],
+    private function getCompiledChapters($chapterChunks, $chaptersAmount)
+    {
+        $response = $this->ai->chat([
+            'model' => 'gpt-3.5-turbo',
+            'temperature' => 0.2,
+            'messages' => [
+                ['role' => 'system', 'content' => "You are a video editor. You will be given a list of chapters for a video. You need to reduce this list down to just {$chaptersAmount} chapters, spread out evenly throughout the entire original list. Keep the relevant, singular, timestamp from the beginning of the original chapter. Provide back only the list of chapters, nothing before and nothing after."],
+                ['role' => 'user', 'content' => implode(' ', $chapterChunks)],
+            ],
+        ]);
 
-            $completedChapters = $this->getCompiledChapters($completedChapterChunks, $chaptersAmount);
+        $compiled = '';
+        foreach (($response->choices ?? $response['choices']) as $choice) {
+            $compiled .= $choice->message->content ?? $choice['message']['content'];
+        }
 
+        return $compiled;
+    }
+        }
+
+        return $completedChapters;
+    }
             $process->update([
                 'chapters' => $completedChapters
             ]);
