@@ -4,9 +4,10 @@ namespace App\Actions;
 
 use App\Enums\Status;
 use App\Models\Process;
-use OpenAI\Laravel\Facades\OpenAI;
+use App\Services\AiService;
 
 class GenerateSummary
+    public function __construct(protected AiService $ai) {}
 {
     public function handle(Process $process, \Closure $next)
     {
@@ -24,13 +25,34 @@ class GenerateSummary
 
             foreach($process->transcriptChunks as $chunk) {
                 $completedSummaryChunks[] = $this->getSummary($chunk);
-            }
+    private function getSummary($subtitles)
+    {
+        $response = $this->ai->chat([
+            'model' => 'gpt-3.5-turbo',
+            'temperature' => 0.2,
+            'messages' => [
+                ['role' => 'system', 'content' => 'You are a video editor. You will be given subtitles of a video. You need to summarize the video in a concise manner, as a single paragraph, and no more than 5 sentences. Provide back only the summary text, nothing before and nothing after.'],
+                ['role' => 'user', 'content' => implode("\n", $subtitles)],
+    private function getCompiledSummary($summaryChunks)
+    {
+        $response = $this->ai->chat([
+            'model' => 'gpt-3.5-turbo',
+            'temperature' => 0.2,
+            'messages' => [
+                ['role' => 'system', 'content' => 'You are a video editor. You will be given a large summary of a video. You need to condense this summary down in a concise manner, as a single paragraph, and no more than 5 sentences. Provide back only the summary text, nothing before and nothing after.'],
+                ['role' => 'user', 'content' => implode(' ', $summaryChunks)],
+            ],
+        ]);
 
-            $completedSummary = $this->getCompiledSummary($completedSummaryChunks);
+        $compiled = '';
+        foreach (($response->choices ?? $response['choices']) as $choice) {
+            $compiled .= $choice->message->content ?? $choice['message']['content'];
+        }
 
-            $process->update([
-                'summary' => $completedSummary
-            ]);
+        return $compiled;
+    }
+        return $completed;
+    }
         } catch (\Exception $e) {
             $process->update([
                 'status' => Status::ERRORED,
