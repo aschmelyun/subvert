@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Actions\AnalyzeWithTwelveLabs;
 use App\Actions\ExtractAudio;
 use App\Actions\{GenerateSubtitles, GenerateChapters, GenerateSummary};
 use App\Actions\TranslateSubtitles;
@@ -36,6 +37,7 @@ class ProcessVideo implements ShouldQueue
         app(Pipeline::class)
             ->send($this->process)
             ->through([
+                AnalyzeWithTwelveLabs::class,
                 ExtractAudio::class,
                 GenerateSubtitles::class,
                 TranslateSubtitles::class,

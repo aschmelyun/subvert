@@ -1,7 +1,16 @@
 #!/bin/sh
 
-if [ -z "$OPENAI_API_KEY" ]; then
+if [ -z "$AI_PROVIDER" ]; then
+    AI_PROVIDER="openai"
+fi
+
+if [ "$AI_PROVIDER" = "openai" ] && [ -z "$OPENAI_API_KEY" ]; then
     echo "OPENAI_API_KEY is not set"
+    exit 1
+fi
+
+if [ "$AI_PROVIDER" = "twelvelabs" ] && [ -z "$TWELVELABS_API_KEY" ]; then
+    echo "TWELVELABS_API_KEY is not set"
     exit 1
 fi
 
@@ -13,8 +22,16 @@ if [ -z "$MEMORY_LIMIT" ]; then
     MEMORY_LIMIT="512M"
 fi
 
-# Only add this line if it's not present in the .env file
-grep -qxF "OPENAI_API_KEY=$OPENAI_API_KEY" .env || echo "OPENAI_API_KEY=$OPENAI_API_KEY" >> .env
+# Only add these lines if they're not present in the .env file
+grep -qxF "AI_PROVIDER=$AI_PROVIDER" .env || echo "AI_PROVIDER=$AI_PROVIDER" >> .env
+
+if [ -n "$OPENAI_API_KEY" ]; then
+    grep -qxF "OPENAI_API_KEY=$OPENAI_API_KEY" .env || echo "OPENAI_API_KEY=$OPENAI_API_KEY" >> .env
+fi
+
+if [ -n "$TWELVELABS_API_KEY" ]; then
+    grep -qxF "TWELVELABS_API_KEY=$TWELVELABS_API_KEY" .env || echo "TWELVELABS_API_KEY=$TWELVELABS_API_KEY" >> .env
+fi
 
 # Only add these lines if they're not present in the php.ini file
 grep -qxF "memory_limit = $MEMORY_LIMIT" /usr/local/etc/php/php.ini || echo "memory_limit = $MEMORY_LIMIT" >> /usr/local/etc/php/php.ini

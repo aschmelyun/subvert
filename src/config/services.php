@@ -31,4 +31,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'twelvelabs' => [
+        'api_key' => env('TWELVELABS_API_KEY'),
+        'base_url' => env('TWELVELABS_BASE_URL', 'https://api.twelvelabs.io/v1.3'),
+        'model' => env('TWELVELABS_MODEL', 'pegasus1.5'),
+    ],
+
 ];

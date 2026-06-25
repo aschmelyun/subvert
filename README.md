@@ -32,11 +32,26 @@ Your video is sent to an API where the audio is extracted from it using FFMpeg, 
 
 If you chose to select chapters or a summary, that transcript is then sent to a **ChatGPT model** for processing into concise chapters of the length you wanted, and a brief summary that would fit in something like a YouTube description.
 
+### Using TwelveLabs instead of OpenAI (optional)
+
+Subvert can also process videos with [TwelveLabs](https://twelvelabs.io)' **Pegasus** model instead of OpenAI. Pegasus understands video directly, so the same subtitles, summary, and chapters are produced from a single video-native analysis call — no separate audio extraction, Whisper transcription, or ChatGPT round-trips.
+
+To opt in, set `AI_PROVIDER=twelvelabs` and provide a `TWELVELABS_API_KEY`:
+
+```
+docker run -it -p 80:8080 -e AI_PROVIDER=twelvelabs -e TWELVELABS_API_KEY=tlk-123abc aschmelyun/subvert
+```
+
+The default provider remains OpenAI, so existing setups are unaffected. You can grab a free API key at [twelvelabs.io](https://twelvelabs.io) — there's a generous free tier.
+
 ## Configuration
 
 You can adjust a few parameters in the container by passing in [environment variables](https://docs.docker.com/engine/reference/commandline/run/#env) with your command using additional `-e` flags. Here are the current ones you can add:
 
-- `OPENAI_API_KEY` **(required)** - Sets the key responsible for communication with OpenAI's APIs. No default.
+- `OPENAI_API_KEY` **(required for the default OpenAI provider)** - Sets the key responsible for communication with OpenAI's APIs. No default.
+- `AI_PROVIDER` - Which provider processes videos: `openai` (default) or `twelvelabs`.
+- `TWELVELABS_API_KEY` **(required when `AI_PROVIDER=twelvelabs`)** - Key for TwelveLabs' API. No default.
+- `TWELVELABS_MODEL` - TwelveLabs analysis model. Default: `pegasus1.5`
 - `UPLOAD_MAX_FILESIZE` - Changes PHP's UPLOAD_MAX_FILESIZE setting. Default: `256M`
 - `MEMORY_LIMIT` - Changes PHP's MEMORY_LIMIT setting. Default: `512M`
 
